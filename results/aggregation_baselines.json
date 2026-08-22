@@ -149,7 +149,7 @@
       "dEM_dir_vs_ce_rerank5": 0.9364,
       "mcnemar_dir_vs_ce_rerank5": {
         "chi2": 9.2932,
-        "p": 0.002300058855451037,
+        "p": 0.00230005885545106,
         "n_dir_right_only": 394,
         "n_ce_rerank5_right_only": 312
       },
@@ -159,19 +159,19 @@
       "dEM_dir_vs_rrf": 1.4959,
       "mcnemar_dir_vs_ce_top1": {
         "chi2": 16.7067,
-        "p": 4.362613016917205e-05,
+        "p": 4.362613016921981e-05,
         "n_dir_right_only": 666,
         "n_ce_top1_right_only": 524
       },
       "mcnemar_dir_vs_borda_ce": {
         "chi2": 5.6066,
-        "p": 0.017892958754039068,
+        "p": 0.017892958754039078,
         "n_dir_right_only": 173,
         "n_borda_right_only": 221
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 45.7995,
-        "p": 1.3099965556762072e-11,
+        "p": 1.3099978209248662e-11,
         "n_dir_right_only": 250,
         "n_rrf_right_only": 119
       }
@@ -195,7 +195,7 @@
       "dEM_dir_vs_ce_rerank5": 2.0822,
       "mcnemar_dir_vs_ce_rerank5": {
         "chi2": 54.0145,
-        "p": 1.9906298831529057e-13,
+        "p": 1.9901387182761555e-13,
         "n_dir_right_only": 402,
         "n_ce_rerank5_right_only": 218
       },
@@ -205,7 +205,7 @@
       "dEM_dir_vs_rrf": 1.6861,
       "mcnemar_dir_vs_ce_top1": {
         "chi2": 165.5381,
-        "p": 0.0,
+        "p": 6.978573324252177e-38,
         "n_dir_right_only": 599,
         "n_ce_top1_right_only": 228
       },
@@ -217,7 +217,7 @@
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 38.0939,
-        "p": 6.742012503835326e-10,
+        "p": 6.742013002652989e-10,
         "n_dir_right_only": 362,
         "n_rrf_right_only": 213
       }
@@ -241,7 +241,7 @@
       "dEM_dir_vs_ce_rerank5": 1.208,
       "mcnemar_dir_vs_ce_rerank5": {
         "chi2": 30.391,
-        "p": 3.531701009418242e-08,
+        "p": 3.5317010045916565e-08,
         "n_dir_right_only": 525,
         "n_ce_rerank5_right_only": 360
       },
@@ -251,19 +251,19 @@
       "dEM_dir_vs_rrf": 2.3062,
       "mcnemar_dir_vs_ce_top1": {
         "chi2": 22.6411,
-        "p": 1.9525769112682667e-06,
+        "p": 1.952576911220527e-06,
         "n_dir_right_only": 640,
         "n_ce_top1_right_only": 823
       },
       "mcnemar_dir_vs_borda_ce": {
         "chi2": 6.9064,
-        "p": 0.008588809807325237,
+        "p": 0.008588809807325222,
         "n_dir_right_only": 191,
         "n_borda_right_only": 247
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 192.1949,
-        "p": 0.0,
+        "p": 1.0549671709529459e-43,
         "n_dir_right_only": 414,
         "n_rrf_right_only": 99
       }
@@ -297,19 +297,19 @@
       "dEM_dir_vs_rrf": 1.279,
       "mcnemar_dir_vs_ce_top1": {
         "chi2": 8.6303,
-        "p": 0.0033061936442487783,
+        "p": 0.003306193644248723,
         "n_dir_right_only": 642,
         "n_ce_top1_right_only": 540
       },
       "mcnemar_dir_vs_borda_ce": {
         "chi2": 3.8455,
-        "p": 0.04987948040999801,
+        "p": 0.049879480409998005,
         "n_dir_right_only": 159,
         "n_borda_right_only": 197
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 31.9197,
-        "p": 1.606801836029348e-08,
+        "p": 1.6068018346165777e-08,
         "n_dir_right_only": 249,
         "n_rrf_right_only": 137
       }
@@ -333,7 +333,7 @@
       "dEM_dir_vs_ce_rerank5": 1.1429,
       "mcnemar_dir_vs_ce_rerank5": {
         "chi2": 22.6757,
-        "p": 1.917741888957103e-06,
+        "p": 1.91774188899522e-06,
         "n_dir_right_only": 271,
         "n_ce_rerank5_right_only": 170
       },
@@ -343,7 +343,7 @@
       "dEM_dir_vs_rrf": 0.2603,
       "mcnemar_dir_vs_ce_top1": {
         "chi2": 142.4954,
-        "p": 0.0,
+        "p": 7.578241285686709e-33,
         "n_dir_right_only": 542,
         "n_ce_top1_right_only": 213
       },
@@ -355,7 +355,7 @@
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 1.0684,
-        "p": 0.3012997367891127,
+        "p": 0.3012997367891099,
         "n_dir_right_only": 238,
         "n_rrf_right_only": 215
       }
@@ -379,7 +379,7 @@
       "dEM_dir_vs_ce_rerank5": 1.003,
       "mcnemar_dir_vs_ce_rerank5": {
         "chi2": 20.2142,
-        "p": 6.923679927162141e-06,
+        "p": 6.923679927170165e-06,
         "n_dir_right_only": 526,
         "n_ce_rerank5_right_only": 389
       },
@@ -401,7 +401,7 @@
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 120.129,
-        "p": 0.0,
+        "p": 5.927686729508779e-28,
         "n_dir_right_only": 428,
         "n_rrf_right_only": 161
       }
@@ -447,7 +447,7 @@
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 65.025,
-        "p": 7.771561172376096e-16,
+        "p": 7.395385819648952e-16,
         "n_dir_right_only": 257,
         "n_rrf_right_only": 103
       }
@@ -471,7 +471,7 @@
       "dEM_dir_vs_ce_rerank5": 0.8487,
       "mcnemar_dir_vs_ce_rerank5": {
         "chi2": 11.8272,
-        "p": 0.0005837127189315394,
+        "p": 0.0005837127189314903,
         "n_dir_right_only": 269,
         "n_ce_rerank5_right_only": 194
       },
@@ -481,19 +481,19 @@
       "dEM_dir_vs_rrf": 1.1203,
       "mcnemar_dir_vs_ce_top1": {
         "chi2": 69.0737,
-        "p": 1.1102230246251565e-16,
+        "p": 9.485055365886892e-17,
         "n_dir_right_only": 487,
         "n_ce_top1_right_only": 259
       },
       "mcnemar_dir_vs_borda_ce": {
         "chi2": 3.3654,
-        "p": 0.06658003555292491,
+        "p": 0.0665800355529249,
         "n_dir_right_only": 200,
         "n_borda_right_only": 164
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 20.5653,
-        "p": 5.763101028732898e-06,
+        "p": 5.76310102870661e-06,
         "n_dir_right_only": 283,
         "n_rrf_right_only": 184
       }
@@ -517,7 +517,7 @@
       "dEM_dir_vs_ce_rerank5": -0.6662,
       "mcnemar_dir_vs_ce_rerank5": {
         "chi2": 7.5349,
-        "p": 0.006051564288387046,
+        "p": 0.006051564288387065,
         "n_dir_right_only": 492,
         "n_ce_rerank5_right_only": 583
       },
@@ -527,19 +527,19 @@
       "dEM_dir_vs_rrf": 3.4849,
       "mcnemar_dir_vs_ce_top1": {
         "chi2": 161.0567,
-        "p": 0.0,
+        "p": 6.649224824302869e-37,
         "n_dir_right_only": 652,
         "n_ce_top1_right_only": 1199
       },
       "mcnemar_dir_vs_borda_ce": {
         "chi2": 7.6129,
-        "p": 0.005795358544334661,
+        "p": 0.005795358544334708,
         "n_dir_right_only": 313,
         "n_borda_right_only": 387
       },
       "mcnemar_dir_vs_rrf": {
         "chi2": 284.8801,
-        "p": 0.0,
+        "p": 6.489044368883767e-64,
         "n_dir_right_only": 634,
         "n_rrf_right_only": 158
       }
