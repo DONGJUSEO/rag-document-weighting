@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Sensitive / personal
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.crt
+*credentials*
+*secret*
+*_private*
+.aws/
+.gcp/
+.azure/
+
+# Cached LLM outputs (may contain API usage patterns)
+llm_cache_*.json
+
+# Large data not included in repo (download separately, see README)
+data/wikipedia_embeddings/
+data/psgs_w100.tsv
+data/bm25_pyserini_index/
+data/nq_test.json
+data/triviaqa_test.json
+data/popqa_test.json
+data/popqa_contriever.json
+
+# Large data / model files (users download separately)
+*.tar
+*.tar.gz
+*.zip
+*.bin
+*.pt
+*.ckpt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build outputs / logs
+*.log
+*.out
+*.tmp
+texput.log
+
+# Environment hints
+.python-version
+.tool-versions
+
+# Local configs
+config_local.py

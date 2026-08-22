@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "bonferroni_correction": "alpha / 27 (9 LLM\u00d7dataset cells \u00d7 3 evidence types)",
+    "alpha_corrected": 0.001851851851851852,
+    "test": "McNemar with Yates continuity correction, chi-squared approximation",
+    "formula": "(|n01 - n10| - 1)**2 / (n01 + n10)",
+    "fields": "p_value_yates = Yates-corrected p via chi2.sf (canonical; matches the paper); p_value = uncorrected chi-square p via chi2.sf (reference only); significant_Bonf_27 uses p_value_yates",
+    "regenerated": "2026-07-24 via code/regen_mcnemar_stats.py",
+    "n01_definition": "Naive wrong, Dir-CE correct (paired)",
+    "n10_definition": "Naive correct, Dir-CE wrong (paired)"
+  },
+  "Qwen 7B_NQ_CE": {
+    "n01": 329,
+    "n10": 159,
+    "p_value": 1.4089959231117675e-14,
+    "significant_Bonf_27": true,
+    "chi2_yates": 58.52663934426229,
+    "p_value_yates": 2.0055691328880417e-14
+  },
+  "GPT-4.1-mini_NQ_CE": {
+    "n01": 283,
+    "n10": 156,
+    "p_value": 1.3495915401184882e-09,
+    "significant_Bonf_27": true,
+    "chi2_yates": 36.16400911161731,
+    "p_value_yates": 1.8138980643762151e-09
+  },
+  "Llama 70B_NQ_CE": {
+    "n01": 286,
+    "n10": 121,
+    "p_value": 2.8681212827852745e-16,
+    "significant_Bonf_27": true,
+    "chi2_yates": 66.08353808353809,
+    "p_value_yates": 4.322105652881045e-16
+  },
+  "Qwen 7B_TQA_CE": {
+    "n01": 446,
+    "n10": 237,
+    "p_value": 1.2731890580179545e-15,
+    "significant_Bonf_27": true,
+    "chi2_yates": 63.34407027818448,
+    "p_value_yates": 1.7357711612972916e-15
+  },
+  "GPT-4.1-mini_TQA_CE": {
+    "n01": 267,
+    "n10": 224,
+    "p_value": 0.05231132576614387,
+    "significant_Bonf_27": false,
+    "chi2_yates": 3.5926680244399187,
+    "p_value_yates": 0.05803499852838032
+  },
+  "Llama 70B_TQA_CE": {
+    "n01": 319,
+    "n10": 195,
+    "p_value": 4.515475136073302e-08,
+    "significant_Bonf_27": true,
+    "chi2_yates": 29.43385214007782,
+    "p_value_yates": 5.785811565070764e-08
+  },
+  "Qwen 7B_PopQA_CE": {
+    "n01": 622,
+    "n10": 132,
+    "p_value": 3.1753514983342274e-71,
+    "significant_Bonf_27": true,
+    "chi2_yates": 317.1366047745358,
+    "p_value_yates": 6.090028859841469e-71
+  },
+  "GPT-4.1-mini_PopQA_CE": {
+    "n01": 589,
+    "n10": 211,
+    "p_value": 9.772638287330063e-41,
+    "significant_Bonf_27": true,
+    "chi2_yates": 177.66125,
+    "p_value_yates": 1.5706608341731943e-40
+  },
+  "Llama 70B_PopQA_CE": {
+    "n01": 783,
+    "n10": 195,
+    "p_value": 7.249363936799144e-79,
+    "significant_Bonf_27": true,
+    "chi2_yates": 352.3200408997955,
+    "p_value_yates": 1.3241053205049274e-78
+  }
+}

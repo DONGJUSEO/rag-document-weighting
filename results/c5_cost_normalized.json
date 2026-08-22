@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "definition": "(mean ΔEM vs Naive across 9 cells) / (latency ms/query)",
+    "unit": "%p per ms",
+    "latency_source": "paper Appendix J (Implementation Details)",
+    "timestamp": "2026-04-26T22:19:09.808736"
+  },
+  "latency_ms": {
+    "ce": 20,
+    "es": 160,
+    "nli": 110,
+    "weighting": 1
+  },
+  "evidence": {
+    "ce": {
+      "mean_delta_em_pp": 2.1928873360564096,
+      "std_delta_em_pp": 1.040512568734977,
+      "n_cells": 9,
+      "latency_ms": 20,
+      "cost_normalized_pp_per_ms": 0.10964436680282048,
+      "cost_normalized_pp_per_sec": 109.64436680282049
+    },
+    "es": {
+      "mean_delta_em_pp": 0.8202167796804858,
+      "std_delta_em_pp": 0.36317404660973096,
+      "n_cells": 9,
+      "latency_ms": 160,
+      "cost_normalized_pp_per_ms": 0.005126354873003036,
+      "cost_normalized_pp_per_sec": 5.126354873003036
+    },
+    "nli": {
+      "mean_delta_em_pp": -1.3837447774830949,
+      "std_delta_em_pp": 0.744542702995742,
+      "n_cells": 9,
+      "latency_ms": 110,
+      "cost_normalized_pp_per_ms": -0.012579497977119044,
+      "cost_normalized_pp_per_sec": -12.579497977119045
+    }
+  }
+}

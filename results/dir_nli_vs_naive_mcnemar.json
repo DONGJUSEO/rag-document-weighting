@@ -1,0 +1,196 @@
+{
+  "_meta": {
+    "comparison": "Dir-NLI (beta=0.5, lambda=30, NLI evidence) vs Naive; full retrieval set (PopQA n=14,267); McNemar with Yates continuity correction, p via chi2.sf",
+    "alpha_27": 0.001851851851851852,
+    "source": "results/{ds}_nli_voting_{llm}.json['_per_question'] (run_main.py)",
+    "n01_definition": "Naive wrong, Dir-NLI correct (paired)",
+    "n10_definition": "Naive correct, Dir-NLI wrong (paired)",
+    "generated_by": "code/compute_nli_mcnemar.py",
+    "default_summary": {
+      "cells": 9,
+      "n_positive_dEM": 0,
+      "n_sig_improve": 0,
+      "n_sig_decrease": 7,
+      "mean_dEM": -1.3837
+    }
+  },
+  "qwen_nq": {
+    "n": 8757,
+    "EM_naive": 28.4344,
+    "EM_variant": 26.082,
+    "dEM_vs_naive": -2.3524,
+    "n01_naive_wrong_variant_right": 133,
+    "n10_naive_right_variant_wrong": 339,
+    "chi2_yates": 89.036,
+    "p_value": 3.876894287451942e-21,
+    "sig_alpha27": true,
+    "direction": "decrease"
+  },
+  "gpt_nq": {
+    "n": 8757,
+    "EM_naive": 32.4084,
+    "EM_variant": 31.2207,
+    "dEM_vs_naive": -1.1876,
+    "n01_naive_wrong_variant_right": 85,
+    "n10_naive_right_variant_wrong": 189,
+    "chi2_yates": 38.719,
+    "p_value": 4.894271936652493e-10,
+    "sig_alpha27": true,
+    "direction": "decrease"
+  },
+  "llama_nq": {
+    "n": 8757,
+    "EM_naive": 28.1147,
+    "EM_variant": 26.9841,
+    "dEM_vs_naive": -1.1305,
+    "n01_naive_wrong_variant_right": 74,
+    "n10_naive_right_variant_wrong": 173,
+    "chi2_yates": 38.8826,
+    "p_value": 4.50076549051649e-10,
+    "sig_alpha27": true,
+    "direction": "decrease"
+  },
+  "qwen_triviaqa": {
+    "n": 8837,
+    "EM_naive": 52.3707,
+    "EM_variant": 50.6733,
+    "dEM_vs_naive": -1.6974,
+    "n01_naive_wrong_variant_right": 92,
+    "n10_naive_right_variant_wrong": 242,
+    "chi2_yates": 66.4701,
+    "p_value": 3.5524866971846003e-16,
+    "sig_alpha27": true,
+    "direction": "decrease"
+  },
+  "gpt_triviaqa": {
+    "n": 8837,
+    "EM_naive": 62.9512,
+    "EM_variant": 62.7136,
+    "dEM_vs_naive": -0.2376,
+    "n01_naive_wrong_variant_right": 60,
+    "n10_naive_right_variant_wrong": 81,
+    "chi2_yates": 2.8369,
+    "p_value": 0.09212296325765205,
+    "sig_alpha27": false,
+    "direction": "decrease"
+  },
+  "llama_triviaqa": {
+    "n": 8837,
+    "EM_naive": 60.1109,
+    "EM_variant": 59.6809,
+    "dEM_vs_naive": -0.43,
+    "n01_naive_wrong_variant_right": 63,
+    "n10_naive_right_variant_wrong": 101,
+    "chi2_yates": 8.3476,
+    "p_value": 0.003862054140750684,
+    "sig_alpha27": false,
+    "direction": "decrease"
+  },
+  "qwen_popqa": {
+    "n": 14267,
+    "EM_naive": 28.3872,
+    "EM_variant": 25.8078,
+    "dEM_vs_naive": -2.5794,
+    "n01_naive_wrong_variant_right": 206,
+    "n10_naive_right_variant_wrong": 574,
+    "chi2_yates": 172.6782,
+    "p_value": 1.9241806573182888e-39,
+    "sig_alpha27": true,
+    "direction": "decrease"
+  },
+  "gpt_popqa": {
+    "n": 14267,
+    "EM_naive": 31.8147,
+    "EM_variant": 30.0834,
+    "dEM_vs_naive": -1.7313,
+    "n01_naive_wrong_variant_right": 182,
+    "n10_naive_right_variant_wrong": 429,
+    "chi2_yates": 99.0442,
+    "p_value": 2.469298975469033e-23,
+    "sig_alpha27": true,
+    "direction": "decrease"
+  },
+  "llama_popqa": {
+    "n": 14267,
+    "EM_naive": 26.1092,
+    "EM_variant": 25.0018,
+    "dEM_vs_naive": -1.1075,
+    "n01_naive_wrong_variant_right": 175,
+    "n10_naive_right_variant_wrong": 333,
+    "chi2_yates": 48.5217,
+    "p_value": 3.2666202886250454e-12,
+    "sig_alpha27": true,
+    "direction": "decrease"
+  },
+  "_grid_sweep": {
+    "description": "All 24 (beta, lambda) NLI configurations x 9 cells = 216 runs; Bonferroni-significant (alpha/27) improvements/decreases vs Naive",
+    "total_runs": 216,
+    "total_sig_improvements": 0,
+    "total_sig_decreases": 131,
+    "cells": {
+      "qwen_nq": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 24,
+        "best_config": "dirichlet_b4.0_l0.5_nli",
+        "best_dEM_vs_naive": -0.7194
+      },
+      "gpt_nq": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 18,
+        "best_config": "dirichlet_b2.0_l0.1_nli",
+        "best_dEM_vs_naive": -0.3426
+      },
+      "llama_nq": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 24,
+        "best_config": "dirichlet_b2.0_l0.1_nli",
+        "best_dEM_vs_naive": -0.4111
+      },
+      "qwen_triviaqa": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 16,
+        "best_config": "dirichlet_b4.0_l0.1_nli",
+        "best_dEM_vs_naive": -0.1811
+      },
+      "gpt_triviaqa": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 0,
+        "best_config": "dirichlet_b4.0_l0.1_nli",
+        "best_dEM_vs_naive": 0.2037
+      },
+      "llama_triviaqa": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 0,
+        "best_config": "dirichlet_b4.0_l0.5_nli",
+        "best_dEM_vs_naive": 0.0339
+      },
+      "qwen_popqa": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 19,
+        "best_config": "dirichlet_b4.0_l0.1_nli",
+        "best_dEM_vs_naive": 0.0771
+      },
+      "gpt_popqa": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 16,
+        "best_config": "dirichlet_b4.0_l0.1_nli",
+        "best_dEM_vs_naive": 0.1051
+      },
+      "llama_popqa": {
+        "n_configs": 24,
+        "sig_improvements_alpha27": 0,
+        "sig_decreases_alpha27": 14,
+        "best_config": "dirichlet_b4.0_l0.1_nli",
+        "best_dEM_vs_naive": 0.1752
+      }
+    }
+  }
+}

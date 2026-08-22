@@ -1,0 +1,34 @@
+# Core
+numpy>=1.24
+scipy>=1.11
+scikit-learn>=1.3
+
+# Deep learning + NLP
+torch>=2.0
+transformers>=4.40
+sentence-transformers>=2.7
+
+# Retrieval
+pyserini>=0.22
+faiss-cpu>=1.7
+bm25s>=0.2.0          # alternative BM25 backend (code/build_bm25_index.py)
+PyStemmer>=2.2.0      # English stemmer for the bm25s tokenizer
+
+# Datasets (HuggingFace, for PopQA auto-loading)
+datasets>=2.18
+
+# API clients
+requests>=2.31
+openai>=1.10
+together>=1.2
+
+# Statistics
+statsmodels>=0.14
+
+# Plotting (figures)
+matplotlib>=3.8
+seaborn>=0.13
+
+# Utils
+tqdm>=4.66
+pandas>=2.1

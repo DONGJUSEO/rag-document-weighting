@@ -1,0 +1,26 @@
+{
+  "nq": {
+    "dataset": "nq",
+    "n_queries_sampled": 500,
+    "n_pairs": 5000,
+    "gold_fraction": 0.2242,
+    "forward_auc_q_as_premise": 0.5039536753980065,
+    "reverse_auc_d_as_premise": 0.5704724471921476
+  },
+  "triviaqa": {
+    "dataset": "triviaqa",
+    "n_queries_sampled": 500,
+    "n_pairs": 5000,
+    "gold_fraction": 0.3426,
+    "forward_auc_q_as_premise": 0.5115534120420961,
+    "reverse_auc_d_as_premise": 0.5902128908820343
+  },
+  "popqa": {
+    "dataset": "popqa",
+    "n_queries_sampled": 500,
+    "n_pairs": 4976,
+    "gold_fraction": 0.23532958199356913,
+    "forward_auc_q_as_premise": 0.5021109129858573,
+    "reverse_auc_d_as_premise": 0.4499854679053921
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "dataset": "nq",
+  "retriever": "BM25 (Pyserini)",
+  "llm": "Qwen/Qwen2.5-7B-Instruct-Turbo",
+  "n_evaluated": 8757,
+  "n_total": 8757,
+  "EM": {
+    "naive": 0.22313577709261162,
+    "simw": 0.21982414068745004,
+    "dir_ce": 0.22073769555783945,
+    "eo_ce": 0.24380495603517185
+  },
+  "k": 10,
+  "beta": 0.5,
+  "lambda_dir_ce": 30.0,
+  "timestamp": "2026-04-27T21:29:55.557861"
+}

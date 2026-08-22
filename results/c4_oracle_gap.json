@@ -1,0 +1,94 @@
+{
+  "qwen2_5_7b": {
+    "nq": {
+      "naive": 28.43439534087016,
+      "dir_ce": 30.37569944044764,
+      "oracle": 48.89802443759279,
+      "improvement_pp": 1.9413040995774793,
+      "oracle_gap_pp": 20.463629096722627,
+      "closure_fraction": 0.09486607142857133,
+      "closure_percent": 9.486607142857133
+    },
+    "triviaqa": {
+      "naive": 52.3820301007129,
+      "dir_ce": 54.74708611519746,
+      "oracle": 68.23582663799932,
+      "improvement_pp": 2.3650560144845585,
+      "oracle_gap_pp": 15.85379653728642,
+      "closure_fraction": 0.14917915774446844,
+      "closure_percent": 14.917915774446843
+    },
+    "popqa": {
+      "naive": 28.38718721525198,
+      "dir_ce": 31.821686409196047,
+      "oracle": 47.17179505151749,
+      "improvement_pp": 3.4344991939440668,
+      "oracle_gap_pp": 18.78460783626551,
+      "closure_fraction": 0.18283582089552236,
+      "closure_percent": 18.283582089552237
+    }
+  },
+  "gpt_4_1_mini": {
+    "nq": {
+      "naive": 32.408359027064066,
+      "dir_ce": 33.85862738380724,
+      "oracle": 51.809980586959,
+      "improvement_pp": 1.4502683567431731,
+      "oracle_gap_pp": 19.401621559894934,
+      "closure_fraction": 0.0747498528546202,
+      "closure_percent": 7.47498528546202
+    },
+    "triviaqa": {
+      "naive": 62.93991173475161,
+      "dir_ce": 63.426502206631206,
+      "oracle": 75.1612538191694,
+      "improvement_pp": 0.4865904718795946,
+      "oracle_gap_pp": 12.221342084417792,
+      "closure_fraction": 0.039814814814814595,
+      "closure_percent": 3.9814814814814596
+    },
+    "popqa": {
+      "naive": 31.814677227167586,
+      "dir_ce": 34.46414803392444,
+      "oracle": 52.13429592766524,
+      "improvement_pp": 2.6494708067568524,
+      "oracle_gap_pp": 20.319618700497657,
+      "closure_fraction": 0.1303897895826147,
+      "closure_percent": 13.03897895826147
+    }
+  },
+  "llama_3_3_70b": {
+    "nq": {
+      "naive": 28.126070572113736,
+      "dir_ce": 30.01027749229188,
+      "oracle": 46.557040082219935,
+      "improvement_pp": 1.8842069201781442,
+      "oracle_gap_pp": 18.4309695101062,
+      "closure_fraction": 0.10223048327137553,
+      "closure_percent": 10.223048327137553
+    },
+    "triviaqa": {
+      "naive": 60.1108973633586,
+      "dir_ce": 61.51408849156954,
+      "oracle": 73.65621817358831,
+      "improvement_pp": 1.4031911282109348,
+      "oracle_gap_pp": 13.545320810229711,
+      "closure_fraction": 0.10359231411863021,
+      "closure_percent": 10.359231411863021
+    },
+    "popqa": {
+      "naive": 26.109203056003366,
+      "dir_ce": 30.230602088736248,
+      "oracle": 51.29319408425037,
+      "improvement_pp": 4.1213990327328816,
+      "oracle_gap_pp": 25.183991028247007,
+      "closure_fraction": 0.16365154467019208,
+      "closure_percent": 16.36515446701921
+    }
+  },
+  "_meta": {
+    "definition": "(Dir-CE - Naive) / (Oracle - Naive)",
+    "oracle": "Generation Oracle: any per-doc answer matches gold",
+    "timestamp": "2026-04-26T22:18:13.114300"
+  }
+}
