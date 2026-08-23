@@ -187,7 +187,10 @@ def smooth_ece(confs, ems, bandwidth=0.1):
 
 # Use the simple absolute-difference binned approach or the smooth version in metrics.py
 def smooth_ece_v2(confs, ems, bandwidth=0.1):
-    """Bandwidth-kernel SmoothECE per Blasiok-Nakkiran's definition."""
+    """Fixed-scale smECE_sigma (Blasiok & Nakkiran 2024, eq. 6, discretized on a
+    100-point grid) at sigma=0.1 with an unreflected Gaussian kernel.
+    Not their self-consistent scale sigma* (Definition 3) and no boundary
+    reflection, so values are not comparable to the relplot package."""
     confs = np.clip(np.asarray(confs, dtype=float), 0.0, 1.0)
     ems = np.asarray(ems, dtype=float)
     if len(confs) == 0:
