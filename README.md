@@ -111,6 +111,9 @@ tar xzf llm_caches_e5.tar.gz -C data/
 tar xzf evidence_caches.tar.gz -C data/     # creates data/evidence_cache/
 ```
 
+The archives store numeric owner 0:0 and carry no extended attributes, so they
+extract cleanly for any user, including root in a container.
+
 ---
 
 ## Installation
