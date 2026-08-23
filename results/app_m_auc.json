@@ -1,0 +1,87 @@
+{
+  "sample_size_per_dataset": 500,
+  "seed": 42,
+  "gold_definition": "compute_nli_reverse.has_gold_answer (lower-cased substring)",
+  "nli_score": "P(entailment) + 0.5*P(neutral), forward (query as premise), doc[:1000]",
+  "es_protocol": "sigma=0.01, n_noise=10, torch seed 42 per config",
+  "datasets": {
+    "nq": {
+      "n_pairs": 5000,
+      "n_gold": 1121,
+      "gold_fraction": 0.2242,
+      "nli": {
+        "cross-encoder/nli-deberta-v3-base": {
+          "auc_forward": 0.5039536753980065
+        },
+        "roberta-large-mnli": {
+          "auc_forward": 0.5106624131080253
+        }
+      },
+      "es": {
+        "trunc_512": {
+          "trunc_chars": 512,
+          "max_seq_length": null,
+          "auc": 0.7204830603912878
+        },
+        "trunc_1000": {
+          "trunc_chars": 1000,
+          "max_seq_length": 512,
+          "auc": 0.7289878779557988
+        }
+      },
+      "elapsed_sec": 295.5119972229004
+    },
+    "triviaqa": {
+      "n_pairs": 5000,
+      "n_gold": 1713,
+      "gold_fraction": 0.3426,
+      "nli": {
+        "cross-encoder/nli-deberta-v3-base": {
+          "auc_forward": 0.5115530568421194
+        },
+        "roberta-large-mnli": {
+          "auc_forward": 0.5168458916949095
+        }
+      },
+      "es": {
+        "trunc_512": {
+          "trunc_chars": 512,
+          "max_seq_length": null,
+          "auc": 0.7355170317500828
+        },
+        "trunc_1000": {
+          "trunc_chars": 1000,
+          "max_seq_length": 512,
+          "auc": 0.7484953284987065
+        }
+      },
+      "elapsed_sec": 321.3672001361847
+    },
+    "popqa": {
+      "n_pairs": 4976,
+      "n_gold": 1171,
+      "gold_fraction": 0.23532958199356913,
+      "nli": {
+        "cross-encoder/nli-deberta-v3-base": {
+          "auc_forward": 0.5021109129858573
+        },
+        "roberta-large-mnli": {
+          "auc_forward": 0.501594939464568
+        }
+      },
+      "es": {
+        "trunc_512": {
+          "trunc_chars": 512,
+          "max_seq_length": null,
+          "auc": 0.7170862645334974
+        },
+        "trunc_1000": {
+          "trunc_chars": 1000,
+          "max_seq_length": 512,
+          "auc": 0.7137428728211677
+        }
+      },
+      "elapsed_sec": 289.33354115486145
+    }
+  }
+}

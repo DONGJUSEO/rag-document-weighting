@@ -50,7 +50,7 @@ def mcnemar_yates(n01, n10):
     from scipy.stats import chi2
     if n01 + n10 == 0:
         return 0.0, 1.0
-    stat = (abs(n01 - n10) - 1) ** 2 / (n01 + n10)
+    stat = max(0.0, abs(n01 - n10) - 1) ** 2 / (n01 + n10)  # Yates; clamp matters only when n01 == n10
     return stat, float(chi2.sf(stat, df=1))
 
 

@@ -423,10 +423,13 @@ def run_dataset(dataset, save_every=200):
         for method, w in weights.items():
             vote = defaultdict(float)
             for i, ans in enumerate(cached_answers):
-                vote[normalize_answer(ans)] += w[i]
+                normed = normalize_answer(ans)
+                if normed and normed != "unknown":  # same rule as generation.aggregate_vote: abstentions carry no vote
+                    vote[normed] += w[i]
             if not vote:
+                method_preds[method] = ""  # all documents abstained: counted as incorrect
                 continue
-            pred = max(vote, key=vote.get)
+            pred = max(vote, key=vote.get)  # ties: first answer in retrieval order
             method_preds[method] = pred
             if pred in gold_norm:
                 em_counts[method] += 1

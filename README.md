@@ -22,7 +22,7 @@ We propose a unified two-parameter weighting framework that generalizes REPLUG b
 ├── LICENSE                            # Apache 2.0
 ├── .env.example                       # Environment-variable template
 ├── .gitignore                         # Standard ignores (env, caches, large data)
-├── code/                              # All experiment scripts (39 .py + 3 .sh)
+├── code/                              # All experiment scripts (41 .py + 3 .sh)
 │   ├── weighting.py                  # Core framework (Eq. 2)
 │   ├── metrics.py                    # McNemar, F1, EM, AUROC
 │   ├── generation.py                 # Black-box LLM API caller (with answer cache)
@@ -30,11 +30,21 @@ We propose a unified two-parameter weighting framework that generalizes REPLUG b
 │   ├── precompute_evidence_cache.py  # Rebuild data/evidence_cache/ (CE + ES)
 │   ├── run_main.py                   # Main 9-cell pipeline (Table 2; per-query EM vectors)
 │   ├── regenerate_table2.py          # Table 2 rows: full-test point estimates + 3-seed ±std
+│   ├── compute_naive_simw_splits.py  # Naive/SimW 3-seed repeated-split ±std (Table 2)
+│   ├── run_additional_baselines.py   # Oracle / Random / Evidence-only / CE-Rerank (Table 5, §4)
+│   ├── run_phase2_analysis.py        # Transfer, repeated split, evidence AUC (Table 4), SmoothECE, Brier
+│   ├── compute_spearman_rho.py       # Retriever-score vs. gold-label Spearman ρ (§4.1, §6.1)
+│   ├── compute_nli_reverse.py        # NLI forward/reverse AUC on the 500-query samples (App. C)
+│   ├── compute_app_m_auc.py          # roberta-large-mnli AUC + ES@512/1000 AUC (App. M/N, Tables 19-20)
+│   ├── generate_paper_figures.py     # Fig. 1 (signal heatmap) and Fig. 2 (λ sensitivity)
+│   ├── generate_paper_figures_part2.py # Risk-coverage and reliability figures (App. G)
+│   ├── build_bm25_index.py           # Legacy rank_bm25 index builder (superseded by build_bm25_pyserini.py)
 │   ├── compute_c1_*.py ~ c5_*.py    # Mechanism diagnostics (Appendix O)
 │   ├── recompute_popqa_k10.py        # PopQA k=10 strict re-eval
 │   ├── run_concat_baseline.py        # Concat-prompt baseline (Appendix P)
 │   ├── run_bm25_pipeline.py          # BM25 robustness (Appendix Q)
 │   ├── run_bm25_grid_search.py       # BM25 24-point (β,λ) grid
+│   ├── compute_bm25_popqa_fallback.py # BM25 PopQA: EM with/without the API-failure queries (App. Q)
 │   ├── compute_gold_subset_analysis.py  # Has-gold / no-gold split (§5.2, App. R; also E5)
 │   ├── compute_simw_es_mcnemar.py    # SimW-vs-Naive + Dir-ES-vs-Naive McNemar (App. D)
 │   ├── compute_nli_mcnemar.py        # Dir-NLI-vs-Naive McNemar + 216-run grid sweep (App. C, Table 14)
@@ -62,6 +72,7 @@ We propose a unified two-parameter weighting framework that generalizes REPLUG b
     ├── additional_baselines_*.json    # Oracle, Random, Evidence-only, CE-Rerank (full set, §4)
     ├── phase2_analysis_*.json         # Transfer, repeated-split, SmoothECE, Brier
     ├── bm25_grid_search.json + bm25_pipeline_qwen_*.json       # Appendix Q
+    ├── bm25_popqa_fallback_subset.json # PopQA EM on all vs. fallback-free queries (App. Q)
     ├── naive_simw_splits_*.json       # Table 2 ±std (3-seed splits)
     ├── gold_subset_analysis.json      # Has-gold / no-gold decomposition (Table 3, App. R;
     │                                   #   strict k=10 cache re-aggregation; full-bucket EM
@@ -71,9 +82,10 @@ We propose a unified two-parameter weighting framework that generalizes REPLUG b
     ├── e5_grid_search.json            # E5 (β,λ) grid (Table 29, App. S)
     ├── aggregation_baselines.json     # RRF / Borda / CE-Top1 / CE-Rerank (Table 30, App. T)
     ├── weight_entropy.json            # Dir-CE weight entropy (§6.4, App. O)
-    ├── direction_*.json, m1_*.json, m2_*.json, nli_direction_auc.json
-    │                                   #   (one-off analyses; the paper values they
-    │                                   #   feed are re-derivable via
+    ├── nli_direction_auc.json         # NLI forward/reverse AUC, 500-query samples (App. C; compute_nli_reverse.py)
+    ├── app_m_auc.json                 # roberta-large-mnli + ES@512/1000 AUC on the same samples
+    │                                   #   (App. M/N; compute_app_m_auc.py)
+    ├── direction_*.json               # one-off direction experiments (values re-derivable via
     │                                   #   verify_unchecked_numbers.py / compute_nli_reverse.py)
     └── smooth_ece_v2.json             # SmoothECE (verified by verify_unchecked_numbers.py)
 ```
@@ -318,7 +330,18 @@ python code/compute_weight_entropy.py          # §6.4 entropy figures
 ```bash
 python code/run_bm25_pipeline.py --dataset all      # Qwen × 3 datasets
 python code/run_bm25_grid_search.py                  # 24-point (β, λ) grid
+python code/compute_bm25_popqa_fallback.py           # PopQA: all vs. fallback-free queries (App. Q)
 ```
+
+The BM25 scripts use the same vote rule as the main pipeline
+(`generation.aggregate_vote`: answers compared after SQuAD normalization,
+abstentions carry no vote, ties go to the first answer in retrieval order).
+In the original PopQA run 12,219 per-document calls (1,260 queries; 1,205
+with all ten calls failed) hit the provider's rate limit on every retry and
+are cached as the abstention token `"unknown"` in
+`data/llm_cache_bm25_qwen.json`; the released Table 26 numbers include
+them (scored as incorrect for every method), and
+`compute_bm25_popqa_fallback.py` reports the fallback-free subset.
 
 ### 4. Concat-prompt baseline (Appendix P)
 
@@ -372,6 +395,20 @@ Aggregation-rule comparison (Appendix T; cache reaggregation only):
 ```bash
 python code/compute_aggregation_baselines.py                  # RRF / Borda / CE-Top1 / CE-Rerank (Table 30)
 ```
+
+Evidence-discrimination AUC on the 500-query samples (Appendices C, M, N;
+local models only, ≈15 min on Apple MPS). Both scripts share one sample
+(seed 42) and one gold definition (a lower-cased gold answer string occurs
+in the document):
+
+```bash
+PIN_MODEL_REVISIONS=1 python code/compute_nli_reverse.py      # nli-deberta-v3-base, forward + reverse (Table 13)
+PIN_MODEL_REVISIONS=1 python code/compute_app_m_auc.py        # roberta-large-mnli + ES@512/1000 (Tables 19, 20)
+```
+
+`regenerate_table2.py` assumes the per-query EM vectors written by
+`run_main.py` (`results/*_voting_*.json`) and the 3-seed split files from
+`compute_naive_simw_splits.py` are present; run those first on a fresh clone.
 
 ---
 

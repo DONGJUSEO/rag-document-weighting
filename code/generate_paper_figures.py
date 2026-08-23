@@ -54,24 +54,23 @@ def extract_em(data, key):
 # ============================================================
 def build_dem_matrix():
     """Return dict: dem_matrix[signal][dataset][llm] = ΔEM%p at (β=0.5, λ=30)."""
-    naive_em = {}  # naive_em[dataset][llm]
+    naive_em = {}  # naive_em[signal][dataset][llm] (Naive EM as stored in that signal's result file)
     dir_em = {}    # dir_em[signal][dataset][llm]
 
-    for ds in DATASETS:
-        naive_em[ds] = {}
-        for llm_slug, llm_label in LLMS:
-            # Any signal's file has the naive baseline; use CE as canonical
-            path = get_ce_result_file(ds, llm_slug, "cross_encoder")
-            data = load_json(path)
-            naive_em[ds][llm_label] = extract_em(data, "naive") * 100  # as percent
-
+    # Each signal's ΔEM is taken against the Naive baseline stored in that
+    # signal's own result file (the convention of the per-LLM tables, App. A),
+    # so figure and table values agree cell by cell. Baselines across files
+    # differ by at most 0.011%p (App. J, API nondeterminism).
     for sig_slug, sig_label in SIGNALS:
         dir_em[sig_label] = {}
+        naive_em[sig_label] = {}
         for ds in DATASETS:
             dir_em[sig_label][ds] = {}
+            naive_em[sig_label][ds] = {}
             for llm_slug, llm_label in LLMS:
                 path = get_ce_result_file(ds, llm_slug, sig_slug)
                 data = load_json(path)
+                naive_em[sig_label][ds][llm_label] = extract_em(data, "naive") * 100  # as percent
                 # Key: dirichlet_b0.5_l30.0_{signal}
                 key = f"dirichlet_b{BETA_DEFAULT}_l30.0_{sig_slug}"
                 em = extract_em(data, key)
@@ -85,7 +84,7 @@ def build_dem_matrix():
             dem[sig_label][ds] = {}
             for _, llm_label in LLMS:
                 dem[sig_label][ds][llm_label] = (
-                    dir_em[sig_label][ds][llm_label] - naive_em[ds][llm_label]
+                    dir_em[sig_label][ds][llm_label] - naive_em[sig_label][ds][llm_label]
                 )
     return dem, naive_em, dir_em
 
@@ -139,7 +138,7 @@ def plot_signal_heatmap(dem, save_path):
 
     # Colorbar
     cbar = plt.colorbar(im, ax=ax, fraction=0.025, pad=0.02)
-    cbar.set_label(r"$\Delta$EM (\%p vs Naive)", fontsize=9)
+    cbar.set_label(r"$\Delta$EM (%p vs Naive)", fontsize=9)
     cbar.ax.tick_params(labelsize=8)
 
     ax.set_title(r"Signal comparison: $\Delta$EM across 9 (LLM, dataset) cells",
@@ -205,7 +204,7 @@ def plot_lambda_sensitivity(curves, save_path):
     ax.axhline(0, color="gray", linestyle="--", linewidth=1, alpha=0.7, zorder=0)
     ax.set_xscale("log")
     ax.set_xlabel(r"$\lambda$ (evidence weight)", fontsize=9)
-    ax.set_ylabel(r"$\Delta$EM (\%p vs Naive)", fontsize=9)
+    ax.set_ylabel(r"$\Delta$EM (%p vs Naive)", fontsize=9)
     ax.set_xticks([0.05, 0.1, 0.5, 1.0, 3.0, 10.0, 30.0])
     ax.set_xticklabels(["0", "0.1", "0.5", "1", "3", "10", "30"], fontsize=8)
     ax.tick_params(axis="y", labelsize=8)
@@ -238,7 +237,7 @@ if __name__ == "__main__":
     print("\nVerification — Naive EMs:")
     for ds in DATASETS:
         for _, llm in LLMS:
-            print(f"  {DATASET_LABEL[ds]:6s} {llm:15s} Naive EM = {naive_em[ds][llm]:.2f}")
+            print(f"  {DATASET_LABEL[ds]:6s} {llm:15s} Naive EM = {naive_em['CE'][ds][llm]:.2f}")
 
     print("\nVerification — Dir-CE EMs:")
     for ds in DATASETS:

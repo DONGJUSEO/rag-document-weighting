@@ -44,7 +44,7 @@ def mcnemar_yates(a, b):
     n = n01 + n10
     if n == 0:
         return n01, n10, 0.0, 1.0
-    stat = (abs(n01 - n10) - 1) ** 2 / n
+    stat = max(0.0, abs(n01 - n10) - 1) ** 2 / n  # Yates; clamp matters only when n01 == n10
     return n01, n10, float(stat), float(chi2.sf(stat, df=1))
 
 

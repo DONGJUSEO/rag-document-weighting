@@ -233,7 +233,7 @@ def mcnemar_test(correct_a, correct_b):
         return 0.0, 1.0
 
     # Continuity correction
-    chi2_stat = (abs(b - c) - 1) ** 2 / (b + c)
+    chi2_stat = max(0.0, abs(b - c) - 1) ** 2 / (b + c)  # Yates; clamp matters only when b == c
     # chi2.sf avoids float underflow to 0.0 for very small p (cf. regen_mcnemar_stats.py).
     p_value = chi2.sf(chi2_stat, df=1)
     return float(chi2_stat), float(p_value)

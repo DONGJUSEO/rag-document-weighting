@@ -1,8 +1,13 @@
-"""Generate Fig 3, Fig 4, Fig 5 (reliability + risk-coverage) from cached data.
+"""Generate the reliability and risk-coverage figures from cached data.
 
-Fig 3 (BODY): Reliability 2-panel — Qwen-7B NQ + Llama-70B PopQA
-Fig 4 (APPENDIX): Risk-coverage 2-panel — Llama-70B NQ + PopQA
-Fig 5 (APPENDIX): 3x3 reliability grid — all 9 (LLM, dataset) cells
+File names keep the historical fig3/fig4/fig5 numbering; in the camera-ready
+manuscript fig4_risk_coverage.pdf is Figure 3 and fig5_reliability_grid.pdf is
+Figure 4 (Appendix G). fig3_reliability_7b_vs_70b.pdf is not included in the
+camera-ready paper and is generated only for completeness.
+
+fig3_reliability_7b_vs_70b.pdf: Reliability 2-panel — Qwen-7B NQ + Llama-70B PopQA (not in the paper)
+fig4_risk_coverage.pdf (paper Fig. 3): Risk-coverage 2-panel — Llama-70B NQ + PopQA
+fig5_reliability_grid.pdf (paper Fig. 4): 3x3 reliability grid — all 9 (LLM, dataset) cells
 """
 import json
 import os
@@ -257,7 +262,7 @@ def plot_risk_coverage_ax(ax, confs_n, ems_n, confs_d, ems_d, title,
                             aurc_n_override=None, aurc_d_override=None,
                             show_legend=False):
     """Plot risk-coverage curves on given axis. Supports AURC override for
-    consistency with Table 10 values (computed via metrics.compute_aurc in the
+    consistency with Table 5 values (computed via metrics.compute_aurc in the
     main result pipeline)."""
     def curve(confs, ems):
         n = len(confs)
@@ -288,7 +293,7 @@ def plot_risk_coverage_ax(ax, confs_n, ems_n, confs_d, ems_d, title,
 
 
 # ============================================================
-# Fig 3: Reliability 2-panel (body)
+# fig3_reliability_7b_vs_70b.pdf: Reliability 2-panel (not used in the camera-ready paper)
 # ============================================================
 def make_fig3():
     print("\n=== Fig 3: Reliability 7B vs 70B ===")
@@ -318,11 +323,11 @@ def make_fig3():
 
 
 # ============================================================
-# Fig 4: Risk-Coverage 2-panel (appendix)
+# fig4_risk_coverage.pdf: Risk-Coverage 2-panel (paper Figure 3, Appendix G)
 # ============================================================
 def make_fig4():
     """Risk-coverage for Llama-70B × {NQ, PopQA}. Override AURC with values
-    from the phase2 JSON pipeline to ensure consistency with Table 10."""
+    from the main voting result JSONs to ensure consistency with Table 5."""
     print("\n=== Fig 4: Risk-Coverage curves (appendix) ===")
     # Source-of-truth AURC values (from run_phase2_analysis using metrics.compute_aurc)
     aurc_overrides = {}
@@ -361,7 +366,7 @@ def make_fig4():
 
 
 # ============================================================
-# Fig 5: 3x3 Reliability Grid (appendix)
+# fig5_reliability_grid.pdf: 3x3 Reliability Grid (paper Figure 4, Appendix G)
 # ============================================================
 def make_fig5():
     print("\n=== Fig 5: 3x3 Reliability Grid (appendix) ===")

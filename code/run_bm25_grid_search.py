@@ -85,10 +85,12 @@ def fetch_doc_text(docid):
 def vote_em(answers, weights, gold_norm):
     vote = defaultdict(float)
     for a, w in zip(answers, weights):
-        vote[normalize_answer(a)] += w
+        normed = normalize_answer(a)
+        if normed and normed != "unknown":  # same rule as generation.aggregate_vote: abstentions carry no vote
+            vote[normed] += w
     if not vote:
         return 0
-    pred = max(vote, key=vote.get)
+    pred = max(vote, key=vote.get)  # ties: first answer in retrieval order
     return int(pred in gold_norm)
 
 

@@ -254,18 +254,18 @@
     }
   },
   "evidence_auc_nq_cross_encoder": {
-    "auc": 0.7380751703410079,
-    "n_gold": 19242,
+    "auc": 0.7383529299719331,
+    "n_gold": 19197,
     "n_total": 87570
   },
   "evidence_auc_triviaqa_cross_encoder": {
-    "auc": 0.7748253682319558,
-    "n_gold": 31189,
+    "auc": 0.7755957061496905,
+    "n_gold": 31187,
     "n_total": 88370
   },
   "evidence_auc_popqa_cross_encoder": {
-    "auc": 0.7254380842902809,
-    "n_gold": 31836,
+    "auc": 0.7276055468704913,
+    "n_gold": 32182,
     "n_total": 142046
   },
   "smooth_ece_nq_cross_encoder": {
@@ -598,18 +598,18 @@
     }
   },
   "evidence_auc_nq_embedding_stability": {
-    "auc": 0.7148910842764933,
-    "n_gold": 19242,
+    "auc": 0.714842518841671,
+    "n_gold": 19197,
     "n_total": 87570
   },
   "evidence_auc_triviaqa_embedding_stability": {
-    "auc": 0.7332862286032653,
-    "n_gold": 31189,
+    "auc": 0.7336126988916428,
+    "n_gold": 31187,
     "n_total": 88370
   },
   "evidence_auc_popqa_embedding_stability": {
-    "auc": 0.7224924737054375,
-    "n_gold": 31836,
+    "auc": 0.7241683839138287,
+    "n_gold": 32182,
     "n_total": 142046
   },
   "smooth_ece_nq_embedding_stability": {

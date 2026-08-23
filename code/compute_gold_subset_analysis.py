@@ -24,7 +24,7 @@ definitions is TQA/GPT (p ~= 1.5e-3 native vs ~= 2e-3 string-match) — report i
 
 McNemar: metrics.mcnemar_test (chi-squared with Yates continuity correction), the
 exact test used for the paper's significance tables. b = Naive-right-only,
-c = Dir-CE-right-only; chi2 = (|b - c| - 1)^2 / (b + c).
+c = Dir-CE-right-only; chi2 = max(0, |b - c| - 1)^2 / (b + c).
 
 Run:
   python compute_gold_subset_analysis.py                 # DPR, all 9 cells, saves canonical JSON

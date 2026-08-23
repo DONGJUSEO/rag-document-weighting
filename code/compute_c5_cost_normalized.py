@@ -109,6 +109,11 @@ def main():
     print(f"Output: {output}\n")
 
     diffs, em_data = load_em_diffs()
+    n_expected = len(LLM_FILES) * len(DATASETS)
+    for evid, cells in diffs.items():
+        if len(cells) != n_expected:
+            raise SystemExit(f"C5: {evid.upper()} has {len(cells)}/{n_expected} cells (missing result files); "
+                             "refusing to write a partial average")
 
     results = {
         "_meta": {

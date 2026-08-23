@@ -31,7 +31,7 @@ for key, cell in data.items():
         continue
     n01, n10 = cell["n01"], cell["n10"]
     n = n01 + n10
-    chi2_yates = (abs(n01 - n10) - 1) ** 2 / n if n else 0.0
+    chi2_yates = max(0.0, abs(n01 - n10) - 1) ** 2 / n if n else 0.0  # Yates; clamp matters only when n01 == n10
     chi2_unc = (n01 - n10) ** 2 / n if n else 0.0
     new = {
         "n01": n01,
@@ -52,7 +52,7 @@ data["_meta"] = {
     "bonferroni_correction": "alpha / 27 (9 LLM×dataset cells × 3 evidence types)",
     "alpha_corrected": ALPHA_BONF,
     "test": "McNemar with Yates continuity correction, chi-squared approximation",
-    "formula": "(|n01 - n10| - 1)**2 / (n01 + n10)",
+    "formula": "max(0, |n01 - n10| - 1)**2 / (n01 + n10)",
     "fields": "p_value_yates = Yates-corrected p via chi2.sf (canonical; matches the paper); "
               "p_value = uncorrected chi-square p via chi2.sf (reference only); "
               "significant_Bonf_27 uses p_value_yates",
