@@ -71,6 +71,7 @@ CORPUS_URL = "https://dl.fbaipublicfiles.com/dpr/wikipedia_split/psgs_w100.tsv.g
 MODELS = {
     "e5": {
         "hf_name": "intfloat/e5-base-v2",
+        "revision": "f52bf8ec8c7124536f0efb74aca902b2995e5bcd",  # used when PIN_MODEL_REVISIONS=1
         "q_prefix": "query: ",
         "p_prefix": "passage: ",
     },
@@ -153,7 +154,8 @@ def load_model(model_key):
     cfg = MODELS[model_key]
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"  loading {cfg['hf_name']} on {device}")
-    model = SentenceTransformer(cfg["hf_name"], device=device)
+    revision = cfg.get("revision") if os.environ.get("PIN_MODEL_REVISIONS") == "1" else None
+    model = SentenceTransformer(cfg["hf_name"], device=device, revision=revision)
     if device == "cuda":
         # fp16 on A100 TensorCores: encoding is the bottleneck and fp32 leaves the
         # TensorCores idle (~5-10x slower). Embeddings are cast back to float32 for

@@ -14,7 +14,7 @@ import torch
 from tqdm import tqdm
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from config import DATA_DIR, SEED
+from config import DATA_DIR, SEED, hf_revision
 
 np.random.seed(SEED)
 
@@ -40,19 +40,19 @@ def load_dpr_models():
 
     print("  Loading DPR question encoder...")
     _q_tokenizer = DPRQuestionEncoderTokenizer.from_pretrained(
-        "facebook/dpr-question_encoder-multiset-base"
+        "facebook/dpr-question_encoder-multiset-base", revision=hf_revision("facebook/dpr-question_encoder-multiset-base")
     )
     _q_model = DPRQuestionEncoder.from_pretrained(
-        "facebook/dpr-question_encoder-multiset-base"
+        "facebook/dpr-question_encoder-multiset-base", revision=hf_revision("facebook/dpr-question_encoder-multiset-base")
     )
     _q_model.eval()
 
     print("  Loading DPR context encoder...")
     _c_tokenizer = DPRContextEncoderTokenizer.from_pretrained(
-        "facebook/dpr-ctx_encoder-multiset-base"
+        "facebook/dpr-ctx_encoder-multiset-base", revision=hf_revision("facebook/dpr-ctx_encoder-multiset-base")
     )
     _c_model = DPRContextEncoder.from_pretrained(
-        "facebook/dpr-ctx_encoder-multiset-base"
+        "facebook/dpr-ctx_encoder-multiset-base", revision=hf_revision("facebook/dpr-ctx_encoder-multiset-base")
     )
     _c_model.eval()
     print("  DPR models loaded.")

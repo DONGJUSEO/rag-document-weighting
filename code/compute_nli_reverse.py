@@ -16,6 +16,8 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification, Auto
 from sklearn.metrics import roc_auc_score
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from config import hf_revision  # recorded HF commits (PIN_MODEL_REVISIONS=1)
+
 
 DATA_DIR = "./data"
 RESULTS_DIR = "./results"
@@ -44,13 +46,13 @@ def has_gold_answer(doc_text, answers):
 
 def load_model():
     print(f"Loading NLI model: {NLI_MODEL}...")
-    tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL)
-    model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL)
+    tokenizer = AutoTokenizer.from_pretrained(NLI_MODEL, revision=hf_revision(NLI_MODEL))
+    model = AutoModelForSequenceClassification.from_pretrained(NLI_MODEL, revision=hf_revision(NLI_MODEL))
     model.eval()
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model = model.to(device)
 
-    config = AutoConfig.from_pretrained(NLI_MODEL)
+    config = AutoConfig.from_pretrained(NLI_MODEL, revision=hf_revision(NLI_MODEL))
     label2id = {label.lower(): idx for idx, label in config.id2label.items()}
     label_ids = {
         "entailment": label2id["entailment"],

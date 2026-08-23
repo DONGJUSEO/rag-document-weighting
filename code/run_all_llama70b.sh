@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 cd "$(dirname "$0")"
 export LLM_BACKEND="together"
 export LLM_MODEL="meta-llama/Llama-3.3-70B-Instruct-Turbo"

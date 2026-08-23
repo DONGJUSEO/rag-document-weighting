@@ -45,6 +45,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from metrics import normalize_answer, exact_match
 from weighting import naive_weights, replug_weights, dirichlet_weights
 
+from config import hf_revision  # recorded HF commits (PIN_MODEL_REVISIONS=1)
+
 CODE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(CODE_DIR)
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -235,7 +237,10 @@ def load_ce_model():
     global _ce_model
     if _ce_model is None:
         from sentence_transformers import CrossEncoder
-        _ce_model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+        _ce_model = CrossEncoder(
+            "cross-encoder/ms-marco-MiniLM-L-6-v2",
+            revision=hf_revision("cross-encoder/ms-marco-MiniLM-L-6-v2"),  # recorded commit when PIN_MODEL_REVISIONS=1
+        )
     return _ce_model
 
 

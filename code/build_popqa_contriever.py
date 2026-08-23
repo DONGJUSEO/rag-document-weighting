@@ -15,7 +15,7 @@ import torch
 from tqdm import tqdm
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from config import DATA_DIR, SEED
+from config import DATA_DIR, SEED, hf_revision
 
 np.random.seed(SEED)
 
@@ -72,7 +72,7 @@ def load_popqa():
     """Load the PopQA dataset."""
     from datasets import load_dataset
     print("Loading PopQA...")
-    ds = load_dataset("akariasai/PopQA", split="test")
+    ds = load_dataset("akariasai/PopQA", split="test", revision=hf_revision("akariasai/PopQA"))
     samples = []
     for item in ds:
         answers = item["possible_answers"]
@@ -95,8 +95,8 @@ def encode_questions(questions, batch_size=64):
     from transformers import AutoTokenizer, AutoModel
 
     print("  Loading Contriever-MSMARCO encoder...")
-    tokenizer = AutoTokenizer.from_pretrained("facebook/contriever-msmarco")
-    model = AutoModel.from_pretrained("facebook/contriever-msmarco")
+    tokenizer = AutoTokenizer.from_pretrained("facebook/contriever-msmarco", revision=hf_revision("facebook/contriever-msmarco"))
+    model = AutoModel.from_pretrained("facebook/contriever-msmarco", revision=hf_revision("facebook/contriever-msmarco"))
     model.eval()
 
     print(f"  Encoding {len(questions)} questions...")

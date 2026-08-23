@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 cd "$(dirname "$0")"
 export LLM_BACKEND="openai"
 export LLM_MODEL="gpt-4.1-mini"

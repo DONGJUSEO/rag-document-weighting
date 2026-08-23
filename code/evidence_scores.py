@@ -9,6 +9,7 @@ Plus three additional methods kept for completeness:
   5. LLM-as-Judge — direct relevance rating by an LLM (not used in paper)
   6. Utility Predictor — trained DeBERTa predictor (not used in paper)
 """
+import os
 import numpy as np
 import requests
 import json
@@ -35,11 +36,11 @@ def _load_nli_model():
     global _nli_model, _nli_tokenizer, _nli_label_ids
     if _nli_model is None:
         from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig
-        from config import NLI_MODEL
+        from config import NLI_MODEL, hf_revision
         model_name = NLI_MODEL
         print(f"Loading NLI model: {model_name}...")
-        _nli_tokenizer = AutoTokenizer.from_pretrained(model_name)
-        _nli_model = AutoModelForSequenceClassification.from_pretrained(model_name)
+        _nli_tokenizer = AutoTokenizer.from_pretrained(model_name, revision=hf_revision(model_name))
+        _nli_model = AutoModelForSequenceClassification.from_pretrained(model_name, revision=hf_revision(model_name))
         _nli_model.eval()
 
         # Prefer MPS, then CUDA, fall back to CPU.
@@ -49,7 +50,7 @@ def _load_nli_model():
         _nli_model = _nli_model.to(device)
 
         # Look up label indices from the model config (avoid hard-coding).
-        config = AutoConfig.from_pretrained(model_name)
+        config = AutoConfig.from_pretrained(model_name, revision=hf_revision(model_name))
         label2id = {label.lower(): idx for idx, label in config.id2label.items()}
         _nli_label_ids = {
             "entailment": label2id["entailment"],
@@ -247,8 +248,8 @@ def _load_embed_model():
     if _embed_model is None:
         from sentence_transformers import SentenceTransformer
         print("Loading embedding model for stability evidence...")
-        from config import EMBED_MODEL
-        _embed_model = SentenceTransformer(EMBED_MODEL)
+        from config import EMBED_MODEL, hf_revision
+        _embed_model = SentenceTransformer(EMBED_MODEL, revision=hf_revision(EMBED_MODEL))
         print("Embedding model loaded.")
     return _embed_model
 
@@ -308,9 +309,12 @@ def _load_cross_encoder():
     global _cross_encoder
     if _cross_encoder is None:
         from sentence_transformers import CrossEncoder
-        from config import CROSS_ENCODER_MODEL
+        from config import CROSS_ENCODER_MODEL, hf_revision
         print(f"  Loading cross-encoder: {CROSS_ENCODER_MODEL}")
-        _cross_encoder = CrossEncoder(CROSS_ENCODER_MODEL)
+        _cross_encoder = CrossEncoder(
+            CROSS_ENCODER_MODEL,
+            revision=hf_revision(CROSS_ENCODER_MODEL),  # recorded commit when PIN_MODEL_REVISIONS=1
+        )
     return _cross_encoder
 
 

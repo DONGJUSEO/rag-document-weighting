@@ -1,0 +1,28 @@
+{
+  "config": {
+    "beta": 0.5,
+    "lambda": 30,
+    "evidence": "cross_encoder"
+  },
+  "uniform_entropy": 2.302585092994046,
+  "per_dataset": {
+    "nq": {
+      "mean_entropy": 2.0728570948605265,
+      "reduction_vs_uniform_pct": 9.976960192806802,
+      "n_queries": 8757,
+      "n_skipped": 0
+    },
+    "triviaqa": {
+      "mean_entropy": 1.9893250282522859,
+      "reduction_vs_uniform_pct": 13.604711751800181,
+      "n_queries": 8837,
+      "n_skipped": 0
+    },
+    "popqa": {
+      "mean_entropy": 2.087175118509041,
+      "reduction_vs_uniform_pct": 9.355136326575787,
+      "n_queries": 14267,
+      "n_skipped": 0
+    }
+  }
+}
