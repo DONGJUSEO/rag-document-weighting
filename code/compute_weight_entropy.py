@@ -1,6 +1,6 @@
 """
 Compute and archive average weight entropy for Dir-CE at default config (beta=0.5, lambda=30, CE evidence).
-Referenced in main.tex §5.4: NQ 2.073, TQA 1.989, PopQA 2.087.
+Referenced in main.tex §6.4: NQ 2.073, TQA 1.989, PopQA 2.087.
 """
 import json
 import os

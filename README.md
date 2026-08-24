@@ -31,7 +31,7 @@ We propose a unified two-parameter weighting framework that generalizes REPLUG b
 │   ├── run_main.py                   # Main 9-cell pipeline (Table 2; per-query EM vectors)
 │   ├── regenerate_table2.py          # Table 2 rows: full-test point estimates + 3-seed ±std
 │   ├── compute_naive_simw_splits.py  # Naive/SimW 3-seed repeated-split ±std (Table 2)
-│   ├── run_additional_baselines.py   # Oracle / Random / Evidence-only / CE-Rerank (Table 5, §4)
+│   ├── run_additional_baselines.py   # Oracle / Random / Evidence-only / CE-Rerank (Table 5, §5.4)
 │   ├── run_phase2_analysis.py        # Transfer, repeated split, evidence AUC (Table 4), SmoothECE, Brier
 │   ├── compute_spearman_rho.py       # Retriever-score vs. gold-label Spearman ρ (§4.1, §6.1)
 │   ├── compute_nli_reverse.py        # NLI forward/reverse AUC on the 500-query samples (App. C)
@@ -69,7 +69,7 @@ We propose a unified two-parameter weighting framework that generalizes REPLUG b
     ├── dir_nli_vs_naive_mcnemar.json  # Dir-NLI vs Naive McNemar, all 9 cells + 24-config
     │                                   #   grid sweep (App. C, Table 14; full retrieval set)
     ├── c1_answer_support_mass.json … c5_cost_normalized.json   # Appendix O
-    ├── additional_baselines_*.json    # Oracle, Random, Evidence-only, CE-Rerank (full set, §4)
+    ├── additional_baselines_*.json    # Oracle, Random, Evidence-only, CE-Rerank (full set, Table 5 and §5.4)
     ├── phase2_analysis_*.json         # Transfer, repeated-split, SmoothECE, Brier
     ├── bm25_grid_search.json + bm25_pipeline_qwen_*.json       # Appendix Q
     ├── bm25_popqa_fallback_subset.json # PopQA EM on all vs. fallback-free queries (App. Q)

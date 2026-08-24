@@ -1,7 +1,7 @@
 """Re-verify the 4 unchecked numerical claims directly.
 
-1. §5.1: 543 predictions disagree, 140 flip on NQ Qwen-7B
-2. §5.1: 1,204 disagree, 288 flip across 3 LLMs on NQ
+1. §6.1: 543 predictions disagree, 140 flip on NQ Qwen-7B
+2. §6.1: 1,204 disagree, 288 flip across 3 LLMs on NQ
 3. Appendix D: McNemar 9-row table (n_01, n_10) for Dir-CE vs Naive
 4. §6.4: Dir family best SmoothECE in 10/18 cells (Dir-ES 8/9, Dir-CE 2/9)
 """
@@ -213,7 +213,7 @@ def smooth_ece_v2(confs, ems, bandwidth=0.1):
 # Claim 1 & 2: Evidence-only vs Dir-CE pointwise disagreement
 # ============================================================
 print("=" * 80)
-print("CLAIM 1 & 2: Evidence-only vs full formula disagreement (§5.1)")
+print("CLAIM 1 & 2: Evidence-only vs full formula disagreement (§6.1)")
 print("Paper claims: NQ Qwen-7B 543 disagree, 140 flip; NQ all 3 LLMs 1,204 / 288")
 print("=" * 80)
 

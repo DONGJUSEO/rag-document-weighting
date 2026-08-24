@@ -1,5 +1,5 @@
 """
-SimW-vs-Naive and Dir-ES-vs-Naive McNemar tests (Appendix R).
+SimW-vs-Naive and Dir-ES-vs-Naive McNemar tests (Appendix D).
 
 Recomputes, from the released caches (no new LLM calls):
   1. SimW (beta=0.5, lambda=0) vs Naive  -- quantifies where the similarity-only
@@ -9,7 +9,7 @@ Recomputes, from the released caches (no new LLM calls):
 
 Population: strict k=10 (queries with exactly 10 retrieved documents), matching
 compute_gold_subset_analysis.py. McNemar with Yates continuity correction,
-Bonferroni alpha/27 (Sec. 3.4).
+Bonferroni alpha/27 (Sec. 4.4).
 
 Sanity gate: the Dir-CE-vs-Naive discordant pairs recomputed here must match
 results/gold_subset_analysis.json exactly; the script aborts on mismatch.

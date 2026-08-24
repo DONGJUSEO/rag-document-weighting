@@ -1,10 +1,10 @@
 """Appendix M/N recomputation: gold-vs-non-gold AUC on a 500-query sample per dataset
-for (a) the alternative NLI model roberta-large-mnli (Table 18) and (b) embedding
-stability at 512- vs 1,000-character truncation (Table 19).
+for (a) the alternative NLI model roberta-large-mnli (Table 19) and (b) embedding
+stability at 512- vs 1,000-character truncation (Table 20).
 
 Sample and gold definition are shared with compute_nli_reverse.py (seed 42,
 np.random.RandomState(42).choice; gold = any lower-cased gold answer string is a
-substring of the lower-cased document), so every AUC in Tables 4, 18, 19, and 20
+substring of the lower-cased document), so every AUC in Tables 4, 13, 19, and 20
 that is computed on the 500-query sample uses one protocol. The deberta-v3-base
 forward AUC is also recomputed here as a consistency check against
 results/nli_direction_auc.json.
