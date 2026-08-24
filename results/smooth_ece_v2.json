@@ -1,10 +1,10 @@
 {
   "_meta": {
-    "description": "SmoothECE values recomputed using the Blasiok-Nakkiran V2 formulation, matching the definition cited in the paper (Appendix J). These are the values reported in paper §6.4. The older V1-formula values remain in phase2_analysis_*.json for archival reference; V2 values here supersede them for calibration comparisons.",
-    "formula": "V2: SmoothECE = (1/n) * sum_m |g_m - weighted_acc_m| * sum_i K(g_m, c_i), where K is Gaussian kernel, grid is 100 points in [0,1], bandwidth 0.1",
+    "description": "SmoothECE values recomputed with the fixed-bandwidth, outcome-smoothed formulation described in the paper (Appendix J): a discretized variant of Blasiok-Nakkiran's reliability-diagram quantity smECE-hat_sigma at sigma=0.1 (unnormalized, unreflected Gaussian kernel), not their residual-smoothed smECE_sigma or self-consistent smECE. These are the values reported in paper §6.4. The older V1-formula values remain in phase2_analysis_*.json for archival reference; V2 values here supersede them for calibration comparisons.",
+    "formula": "V2: SmoothECE = (dg/n) * sum_m |g_m - weighted_acc_m| * sum_i K(g_m, c_i), where K(g,c) = exp(-0.5*((c-g)/0.1)^2) (unnormalized Gaussian), grid is 100 points in [0,1] (dg = 1/99), weighted_acc_m = sum_i K(g_m,c_i)*a_i / sum_i K(g_m,c_i)",
     "recomputed_by": "code/verify_unchecked_numbers.py::smooth_ece_v2",
     "date": "2026-04-18",
-    "note_on_v1": "V1 (phase2_analysis_*.json smooth_ece_*) used |avg_conf - avg_acc| which is not the Blasiok-Nakkiran standard; V2 here uses |grid_point - weighted_acc| per the standard."
+    "note_on_v1": "V1 (phase2_analysis_*.json smooth_ece_*) used |avg_conf - avg_acc| a single-bin gap; V2 here uses the kernel-smoothed |grid_point - weighted_acc| (the outcome-smoothed smECE-hat variant)."
   },
   "Qwen-7B": {
     "NQ_cross_encoder":          {"Naive": 0.0133, "REPLUG": 0.0123, "Dir": 0.0215, "dir_best": false},
