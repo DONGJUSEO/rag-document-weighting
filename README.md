@@ -463,6 +463,12 @@ OpenAI); E5 corpus encoding used a one-time rented single-GPU host:
 
 ---
 
+## AI assistance
+
+Claude (Anthropic) and ChatGPT (OpenAI) were used for code refactoring and debugging assistance and for checking the bibliographic metadata of the paper's references. All AI-assisted changes were reviewed and verified by the authors, who retain full responsibility for this repository. No AI assistant was used to generate research ideas, methods, experimental results, or scientific claims.
+
+---
+
 ## License
 
 Apache 2.0 (see LICENSE file).
